@@ -9,7 +9,10 @@ from . import models
 
 
 
-@admin.register(models.BaseEmployee)
-class BaseEmployeeAdmin(admin.ModelAdmin):
-    list_display = ['phone', 'birth_date', 'national_number', 'salary']
+@admin.register(models.Role)
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ['title']
 
+@admin.register(models.EmployeeProfile)
+class EmployeeProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'role', 'birth_date']
