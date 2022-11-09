@@ -1,39 +1,19 @@
 from django.db import models
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.conf import settings
 
-# class Salary(models.Model):
-#     value = models.IntegerField()
-#     paid_date = models.DateField(auto_now_add=True)
 
 
 class BaseEmployee(models.Model):
+    email = models.EmailField(unique=True)
     phone = models.CharField(max_length=255)
     birth_date = models.DateField(null=True, blank=True)
     national_number = models.IntegerField()
     salary = models.IntegerField()
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
 
 
     
-
-class Employee(BaseEmployee):
-    name = models.CharField(max_length=255)
-
-    def __str__(self) -> str:
-        return self.name
-
-
-class HrManager(BaseEmployee):
-    name = models.CharField(max_length=255)
-
-    def __str__(self) -> str:
-        return self.name
-
-
-class PayRollManager(BaseEmployee):
-    name = models.CharField(max_length=255)
-
-    def __str__(self) -> str:
-        return self.name
 
 
 
