@@ -1,26 +1,39 @@
 from django.db import models
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-
-class Salary(models.Model):
-    value = models.IntegerField()
-    paid_date = models.DateField(auto_now_add=True)
+# class Salary(models.Model):
+#     value = models.IntegerField()
+#     paid_date = models.DateField(auto_now_add=True)
 
 
 class BaseEmployee(models.Model):
     phone = models.CharField(max_length=255)
     birth_date = models.DateField(null=True, blank=True)
     national_number = models.IntegerField()
-    salary = models.ForeignKey(Salary, on_delete=models.CASCADE)
-    
+    salary = models.IntegerField()
+
+
     
 
 class Employee(BaseEmployee):
-    pass
+    name = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.name
+
 
 class HrManager(BaseEmployee):
-    pass
+    name = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.name
+
 
 class PayRollManager(BaseEmployee):
-    pass
+    name = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.name
+
 
 
