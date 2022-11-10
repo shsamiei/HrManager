@@ -17,3 +17,7 @@ class RoleAdmin(admin.ModelAdmin):
 class EmployeeProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'role', 'birth_date']
 
+@admin.register(models.Salary)
+class SalaryAdmin(admin.ModelAdmin):
+    list_display = ['value']
+
