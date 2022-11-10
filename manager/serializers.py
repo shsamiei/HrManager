@@ -21,27 +21,23 @@ class SalarySerializer(serializers.ModelSerializer):
 #         fields = ['first_name', 'last_name', 'email']
 
 
-class EmployeeProfileSerializer(serializers.ModelSerializer):
+class PostEmployeeProfileSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(source="user.first_name")
     last_name = serializers.CharField(source="user.last_name")
     email = serializers.EmailField(source="user.email")
-    # role = RoleSerializer()
-    # salary = SalarySerializer()
-    # user = SimpleEmployeeProfileSerializer()
-
 
     def create(self, validated_data):
         user_id = self.context['user_id']
-
         user = get_user_model().objects.get(id=user_id)
-        print('HIIIIII\n\n\n\n\n\n', validated_data)
-        user.first_name = validated_data['user']['first_name']
-        user.last_name = validated_data['user'].pop('last_name')
-        user.email = validated_data['user'].pop('email')
-        validated_data.pop('user')
-        user.save()
-
-        return EmployeeProfile.objects.create(user_id=user_id, **validated_data)
+        if EmployeeProfile.objects.filter(user_id=user_id): 
+            raise serializers.ValidationError('The Employee is already Exist !')
+        else : 
+            user.first_name = validated_data['user'].pop('first_name')
+            user.last_name = validated_data['user'].pop('last_name')
+            user.email = validated_data['user'].pop('email')
+            validated_data.pop('user')
+            user.save()
+            return EmployeeProfile.objects.create(user_id=user_id, **validated_data)
 
 
     class Meta:
@@ -49,8 +45,15 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
         fields = ['first_name', 'last_name', 'email', 'national_id', 'birth_date', 'role', 'salary']
 
 
+class GetEmployeeProfileSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(source="user.first_name")
+    last_name = serializers.CharField(source="user.last_name")
+    email = serializers.EmailField(source="user.email")
+    role = RoleSerializer()
+    salary = SalarySerializer()
+    # user = SimpleEmployeeProfileSerializer()
 
-
-
-
+    class Meta:
+        model = EmployeeProfile
+        fields = ['id', 'first_name', 'last_name', 'email', 'national_id', 'birth_date', 'role', 'salary']
 

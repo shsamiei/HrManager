@@ -9,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.mixins import CreateModelMixin , RetrieveModelMixin , UpdateModelMixin
 from .models import Role, EmployeeProfile
-from .serializers import RoleSerializer, EmployeeProfileSerializer
+from .serializers import RoleSerializer, PostEmployeeProfileSerializer, GetEmployeeProfileSerializer
 
                          
 
@@ -20,7 +20,13 @@ class RoleViewSet(ModelViewSet):
 
 class EmployeeProfileViewSet(ModelViewSet):
     queryset = EmployeeProfile.objects.all()
-    serializer_class = EmployeeProfileSerializer
+
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return PostEmployeeProfileSerializer
+        return GetEmployeeProfileSerializer
 
     def get_serializer_context(self):
-         return {'user_id': 5}
+         return {'user_id': 7}
+
