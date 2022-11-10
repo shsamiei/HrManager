@@ -8,10 +8,18 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.mixins import CreateModelMixin , RetrieveModelMixin , UpdateModelMixin
-from .models import Role, EmployeeProfile
-from .serializers import RoleSerializer, PostEmployeeProfileSerializer, GetEmployeeProfileSerializer, PatchEmployeeProfileSerializer
+from .models import Role, EmployeeProfile, Salary
+from .serializers import RoleSerializer, PostEmployeeProfileSerializer, GetEmployeeProfileSerializer,SalarySerializer
 
-                         
+class SalaryViewSet(ModelViewSet):
+    serializer_class =  SalarySerializer
+
+    def get_queryset(self):
+         return Salary.objects.filter(employee_id = self.kwargs['employee_pk'])         
+
+    def get_serializer_context(self):
+         return {'employee_id': self.kwargs['employee_pk']}
+         
 
 class RoleViewSet(ModelViewSet):
     queryset = Role.objects.all()

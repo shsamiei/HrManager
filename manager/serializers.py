@@ -17,6 +17,10 @@ class SalarySerializer(serializers.ModelSerializer):
         model = Salary
         fields = ['value', 'paid_time']
 
+    def create(self, validated_data):
+        employee_id = self.context['employee_id']
+        return Salary.objects.create(employee_id=employee_id, **validated_data)
+
 
 
 class PostEmployeeProfileSerializer(serializers.ModelSerializer):

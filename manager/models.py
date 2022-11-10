@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractUser
 from .enums import RollChoices
 
 class Role(models.Model):
-
     title = models.CharField(max_length=64 ,choices=RollChoices.choices)
 
     class Meta:  
@@ -13,6 +12,7 @@ class Role(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class EmployeeProfile(models.Model):
 
