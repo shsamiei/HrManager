@@ -18,9 +18,11 @@ class EmployeeProfile(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
     role = models.ForeignKey(Role, blank=True, default=None, null=True, on_delete=models.SET_NULL)
-    # salary = models.ForeignKey(Salary, on_delete=models.CASCADE)
     birth_date = models.DateField(blank=True, default=None, null=True)
     national_id = models.CharField(max_length=10, unique=True)
+
+    def __str__(self) -> str:
+        return self.user.first_name
 
 
 class Salary(models.Model):

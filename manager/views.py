@@ -27,12 +27,8 @@ class EmployeeProfileViewSet(ModelViewSet):
         if self.request.method == 'POST':
             return PostEmployeeProfileSerializer
 
-        elif self.request.method == 'PATCH':
-            return PatchEmployeeProfileSerializer
-
-
         return GetEmployeeProfileSerializer
 
     def get_serializer_context(self):
-         return {'user_id': 8}
+         return {'user_id': 2}
 
