@@ -9,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.mixins import CreateModelMixin , RetrieveModelMixin , UpdateModelMixin
 from .models import Role, EmployeeProfile
-from .serializers import RoleSerializer, PostEmployeeProfileSerializer, GetEmployeeProfileSerializer
+from .serializers import RoleSerializer, PostEmployeeProfileSerializer, GetEmployeeProfileSerializer, PatchEmployeeProfileSerializer
 
                          
 
@@ -19,12 +19,18 @@ class RoleViewSet(ModelViewSet):
 
 
 class EmployeeProfileViewSet(ModelViewSet):
-    queryset = EmployeeProfile.objects.all()
+    queryset = EmployeeProfile.objects.prefetch_related('salary').all()
 
 
     def get_serializer_class(self):
+
         if self.request.method == 'POST':
             return PostEmployeeProfileSerializer
+
+        elif self.request.method == 'PATCH':
+            return PatchEmployeeProfileSerializer
+
+
         return GetEmployeeProfileSerializer
 
     def get_serializer_context(self):

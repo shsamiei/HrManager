@@ -15,7 +15,7 @@ class RoleSerializer(serializers.ModelSerializer):
 class SalarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Salary
-        fields = ['value', 'paid_time']
+        fields = ['value', 'paid_time', 'employee']
 
 
 # class SimpleEmployeeProfileSerializer(serializers.ModelSerializer):
@@ -55,9 +55,16 @@ class GetEmployeeProfileSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(source="user.last_name")
     email = serializers.EmailField(source="user.email")
     role = RoleSerializer()
-    salary = SalarySerializer()
+    salary = SalarySerializer(many=True)
 
 
     class Meta:
         model = EmployeeProfile
         fields = ['first_name', 'last_name', 'email', 'national_id', 'birth_date', 'role', 'salary']
+
+
+
+class PatchEmployeeProfileSerializer(serializers.ModelSerializer):
+    class Meta : 
+        model = EmployeeProfile
+        fields = ['national_id']

@@ -15,5 +15,3 @@ router.register('Employees', views.EmployeeProfileViewSet, basename='employees')
 
 urlpatterns = router.urls 
 
-
-  
