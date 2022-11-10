@@ -16,3 +16,4 @@ class RoleAdmin(admin.ModelAdmin):
 @admin.register(models.EmployeeProfile)
 class EmployeeProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'role', 'birth_date']
+

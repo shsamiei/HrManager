@@ -1,21 +1,12 @@
 from django.db import models
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.conf import settings
-
-
+from django.contrib.auth.models import AbstractUser
+from .enums import RollChoices
 
 class Role(models.Model):
-
-    SIMPLE_EMPLOYEE = "0"
-    HR_MANAGER = "1"
-    PAY_ROLL_MANAGER = "2"
-
-    ROLE_CHOICES = [ 
-        (SIMPLE_EMPLOYEE, ("Simple Employee")),
-        (HR_MANAGER, ("Hr Manager")),
-        (PAY_ROLL_MANAGER, ("Payroll Manager")),]
-    
-    title = models.CharField(max_length=1, choices = ROLE_CHOICES)
+        
+    title = models.CharField(max_length=64 ,choices=RollChoices.choices)
 
     class Meta:  
         ordering = ["title"]
@@ -35,6 +26,12 @@ class EmployeeProfile(models.Model):
 
 class Salary(models.Model):
     pass
+
+
+
+
+
+
 
 
 

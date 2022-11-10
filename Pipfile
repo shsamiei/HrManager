@@ -8,6 +8,8 @@ django = "*"
 mysqlclient = "*"
 djangorestframework = "*"
 drf-nested-routers = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
