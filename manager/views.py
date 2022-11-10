@@ -22,3 +22,5 @@ class EmployeeProfileViewSet(ModelViewSet):
     queryset = EmployeeProfile.objects.all()
     serializer_class = EmployeeProfileSerializer
 
+    def get_serializer_context(self):
+         return {'user_id': 5}
