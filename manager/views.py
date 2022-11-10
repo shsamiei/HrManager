@@ -28,5 +28,5 @@ class EmployeeProfileViewSet(ModelViewSet):
         return GetEmployeeProfileSerializer
 
     def get_serializer_context(self):
-         return {'user_id': 7}
+         return {'user_id': 8}
 
