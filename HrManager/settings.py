@@ -100,9 +100,11 @@ CACHES = {
         "KEY_PREFIX": "example"
     }
 }
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+#-----
+CACHE_TTL = 60 * 1
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+#-----
 
 AUTH_PASSWORD_VALIDATORS = [
     {
