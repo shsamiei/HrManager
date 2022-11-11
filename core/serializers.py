@@ -1,5 +1,3 @@
-from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
-from djoser.serializers import UserSerializer as BaseUserSerializer
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -19,10 +17,3 @@ class UserSerializer(serializers.ModelSerializer):
         username = self.context['username'] 
         return User.objects.create(username=username, **validated_data)
 
-
-
-
-
-    # print("----------------------------")
-    # sendEmail()
-    # print("----------------------------")
