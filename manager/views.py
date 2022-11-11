@@ -1,7 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 from .models import Role, EmployeeProfile, Salary
 from .serializers import RoleSerializer, PostEmployeeProfileSerializer, GetEmployeeProfileSerializer,SalarySerializer
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView
+
 
 class SalaryViewSet(ModelViewSet):
     serializer_class =  SalarySerializer
@@ -30,7 +31,10 @@ class EmployeeProfileCreateAPIView(CreateAPIView):
     queryset = EmployeeProfile.objects.all()
     serializer_class = PostEmployeeProfileSerializer
 
+
     def get_serializer_context(self):
         return {'user_id': self.kwargs['uid']}
+
+
 
 
