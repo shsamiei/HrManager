@@ -9,21 +9,12 @@ router.register('Roles', views.RoleViewSet, basename='roles')
 router.register('Employees', views.EmployeeProfileViewSet, basename='employees')
 
 
-# create_employee_router = routers.NestedDefaultRouter(router, 'Employees', lookup='employee')
-# create_employee_router.register('create/<int:pk>', views.PostEmployeeProfileViewSet, basename='employee-pk')
-
-
 employees_router = routers.NestedDefaultRouter(router, 'Employees', lookup='employee')
 employees_router.register('salaries', views.SalaryViewSet, basename='employee-salaries')
-
-# urlpatterns = router.urls  + employees_router.urls
 
 urlpatterns = [
     path('accounts/create/<uuid:uid>/', views.EmployeeProfileCreateAPIView.as_view()),
     path('', include(router.urls)),
     path('', include(employees_router.urls)),
-
-
 ]
 
-# just for test
