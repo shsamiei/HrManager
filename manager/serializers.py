@@ -27,6 +27,7 @@ class PostEmployeeProfileSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(source="user.first_name")
     last_name = serializers.CharField(source="user.last_name")
     email = serializers.EmailField(source="user.email")
+    username = serializers.CharField(source="user.username")
 
     def create(self, validated_data):
         user_id = self.context['user_id']
@@ -39,6 +40,7 @@ class PostEmployeeProfileSerializer(serializers.ModelSerializer):
             user.first_name = validated_data['user'].pop('first_name')
             user.last_name = validated_data['user'].pop('last_name')
             user.email = validated_data['user'].pop('email')
+            user.username = validated_data['user'].pop('username')
             validated_data.pop('user')
             user.save()
             return EmployeeProfile.objects.create(user_id=user_id, **validated_data)
@@ -46,7 +48,7 @@ class PostEmployeeProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = EmployeeProfile
-        fields = ['first_name', 'last_name', 'email', 'national_id', 'birth_date', 'role']
+        fields = ['first_name', 'last_name', 'username', 'email', 'national_id', 'birth_date', 'role']
 
 
 class GetEmployeeProfileSerializer(serializers.ModelSerializer):

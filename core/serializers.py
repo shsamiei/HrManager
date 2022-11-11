@@ -13,5 +13,10 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['email', 'first_name', 'last_name']
 
 
+    def create(self, validated_data):
+        username = self.context['username'] 
+        return User.objects.create(username=username, **validated_data)
+
+
 
 
