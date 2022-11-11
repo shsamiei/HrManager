@@ -17,7 +17,7 @@ class BaseCacheService:
 class CacheService(BaseCacheService):
     PREFIX = 'E'
     KEYS = {
-        'user_id' : f'{PREFIX}'':{UUID}'
+        'user_id' : f'{PREFIX}:''{UUID}'
     }
     EX = 60 * 30
 

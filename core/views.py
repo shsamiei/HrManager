@@ -21,8 +21,9 @@ class UserCreationViewSet(ModelViewSet):
 
      @classmethod
      def sendEmail(cls, instance, uuid):
-          subject = 'welcome to Hossein and Amin world'
-          message = f'{instance.first_name}, thank you for registering in Sotoon, uuid : {uuid}.'
+          subject = 'registraion form for hiring'
+          message = f'Hello dear {instance.first_name}, thank you for registering in Sotoon,\
+                submit the below link and complete your profile\nyour profile link http://127.0.0.1:8000/manager/accounts/create/{uuid}'
           email_from = settings.EMAIL_HOST_USER
           recipient_list = [instance.email]
           send_mail( subject, message, email_from, recipient_list )
@@ -37,15 +38,16 @@ class UserCreationViewSet(ModelViewSet):
      def perform_create(self, serializer):
          instance = serializer.save()
          uuid = uuid4()
-         CacheService.cache_user_id(uuid, instance.id)
+         user_id = instance.id
+         cach_service = CacheService()
+         cach_service.cache_user_id(uuid, user_id)
          self.sendEmail(instance, uuid)
          
-         
 
 
 
 
-# I have to make this flow better and send email afte user created not before but for pace of proccess ignore it now
+
 
 
      

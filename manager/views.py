@@ -2,7 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from .models import Role, EmployeeProfile, Salary
 from .serializers import RoleSerializer, PostEmployeeProfileSerializer, GetEmployeeProfileSerializer,SalarySerializer
 from rest_framework.generics import CreateAPIView
-
+from core.cache import CacheService
 
 class SalaryViewSet(ModelViewSet):
     serializer_class =  SalarySerializer
@@ -33,7 +33,10 @@ class EmployeeProfileCreateAPIView(CreateAPIView):
 
 
     def get_serializer_context(self):
-        return {'user_id': self.kwargs['uid']}
+        cach_service = CacheService()
+        uuid = self.kwargs['uid']
+        user_id = cach_service.get_user_id(uuid)
+        return {'user_id': user_id}
 
 
 

@@ -19,7 +19,7 @@ employees_router.register('salaries', views.SalaryViewSet, basename='employee-sa
 # urlpatterns = router.urls  + employees_router.urls
 
 urlpatterns = [
-    path('accounts/create/<int:uid>/', views.EmployeeProfileCreateAPIView.as_view()),
+    path('accounts/create/<uuid:uid>/', views.EmployeeProfileCreateAPIView.as_view()),
     path('', include(router.urls)),
     path('', include(employees_router.urls)),
 
