@@ -19,6 +19,7 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 class UserCreationViewSet(ModelViewSet):
      serializer_class =  UserSerializer
 
+
      @classmethod
      def sendEmail(cls, instance, uuid):
           subject = 'registraion form for hiring'

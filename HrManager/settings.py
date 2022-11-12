@@ -88,7 +88,16 @@ DATABASES = {
         'PASSWORD': 'Abc1011498123abc'
     }
 }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
 
+    ),
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
 
 CACHES = {
     "default": {
@@ -155,3 +164,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'Sotoon.hr.management@outlook.com'
 EMAIL_HOST_PASSWORD = '$ot00nHR'
 
+DJOSER = {
+    'PERMISSIONS': {
+        'user_create': ['rest_framework.permissions.IsAdminUser'],
+        'user_list': ['rest_framework.permissions.IsAdminUser'],
+    }
+}

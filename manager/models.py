@@ -25,6 +25,8 @@ class EmployeeProfile(models.Model):
     def __str__(self) -> str:
         return self.user.first_name
 
+    
+
 
 class Salary(models.Model):
     value = models.PositiveIntegerField(default=0)
