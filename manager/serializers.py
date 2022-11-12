@@ -1,5 +1,7 @@
 from decimal import Decimal
 from rest_framework import serializers
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from .models import Role, EmployeeProfile, Salary
 from django.db.models.aggregates import Count, Sum
 from django.contrib.auth import get_user_model
@@ -36,7 +38,6 @@ class PostEmployeeProfileSerializer(serializers.ModelSerializer):
         password_validation.validate_password(value, self.instance)
         return value
 
-        
     def create(self, validated_data):
         user_id = self.context['user_id']
         user = get_user_model().objects.get(id=user_id)
@@ -66,11 +67,17 @@ class GetEmployeeProfileSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(source="user.last_name")
     email = serializers.EmailField(source="user.email")
     
-
     role = RoleSerializer(read_only=True)
     salary = SalarySerializer(many=True, read_only=True)
 
+    def validate_national_id(self, value):
+        if len(value) != 10 : 
+            raise serializers.ValidationError("national_id should be equal 10 digits")
+        return value
+
+
     def update(self, instance, validated_data):
+
         user_id = self.context['user_id']
         user = get_user_model().objects.get(id=user_id)
 
@@ -86,12 +93,13 @@ class GetEmployeeProfileSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-
-        
-
     class Meta:
         model = EmployeeProfile
         fields = ['id','first_name', 'last_name', 'email', 'national_id', 'birth_date', 'role', 'salary']
+        read_only_fields = ['salary']
+
+
+
 
 
 
@@ -99,3 +107,5 @@ class PatchEmployeeProfileSerializer(serializers.ModelSerializer):
     class Meta : 
         model = EmployeeProfile
         fields = ['national_id']
+
+
