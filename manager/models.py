@@ -7,7 +7,7 @@ from .enums import RollChoices
 
 class Role(models.Model):
     title = models.CharField(max_length=64 ,choices=RollChoices.choices)
-
+    
     class Meta:  
         ordering = ["title"]
 

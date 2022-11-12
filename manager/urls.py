@@ -6,7 +6,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register('Roles', views.RoleViewSet, basename='roles')
-router.register('Employees', views.EmployeeProfileViewSet, basename='employees')
+router.register('Employees', views.EmployeeProfileListViewSet, basename='employees')
 
 
 employees_router = routers.NestedDefaultRouter(router, 'Employees', lookup='employee')
@@ -14,6 +14,7 @@ employees_router.register('salaries', views.SalaryViewSet, basename='employee-sa
 
 urlpatterns = [
     path('accounts/create/<uuid:uid>/', views.EmployeeProfileCreateAPIView.as_view()),
+    path('profile/', views.EmployeeAPIView.as_view()),
     path('', include(router.urls)),
     path('', include(employees_router.urls)),
 ]
