@@ -1,16 +1,23 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.decorators import action
-from rest_framework.response import Response
 from .models import Role, EmployeeProfile, Salary
 from .serializers import RoleSerializer, PostEmployeeProfileSerializer, GetEmployeeProfileSerializer,SalarySerializer
 from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView
+from rest_framework.permissions import IsAuthenticated
 from core.cache import CacheService
 from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import AuthenticationFailed
-
+from .permissions import  IsHrManager, IsPayRollManager, IsHrOrPayRollManager
+from rest_framework import permissions
 
 class SalaryViewSet(ModelViewSet):
     serializer_class =  SalarySerializer
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS: 
+            return [IsAuthenticated()]
+        return [IsPayRollManager()]
+
+
 
     def get_queryset(self):
          return Salary.objects.filter(employee_id = self.kwargs['employee_pk'])         
@@ -26,11 +33,20 @@ class RoleViewSet(ModelViewSet):
 
 
 
-
 class EmployeeProfileListViewSet(ModelViewSet):
+
     http_method_names = ['get', 'put', 'patch']
     queryset = EmployeeProfile.objects.prefetch_related('salary').all()
     serializer_class = GetEmployeeProfileSerializer
+
+
+
+    def get_permissions(self):
+        if self.request.method == 'GET' :
+                return [IsHrOrPayRollManager()]
+        else :
+                return [IsHrManager()]
+
 
 
     def get_serializer_context(self):
@@ -57,6 +73,7 @@ class EmployeeProfileCreateAPIView(CreateAPIView):
 
 class EmployeeAPIView(RetrieveUpdateAPIView):
     serializer_class = GetEmployeeProfileSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
           return  EmployeeProfile.objects.all()
@@ -70,6 +87,9 @@ class EmployeeAPIView(RetrieveUpdateAPIView):
             raise AuthenticationFailed('your not logged in as user')
         obj = get_object_or_404(queryset, user=self.request.user)
         return obj
+
+
+# in the task , simple employee just can to view his/er profile 
 
 
         

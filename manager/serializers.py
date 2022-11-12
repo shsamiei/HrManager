@@ -1,9 +1,5 @@
-from decimal import Decimal
 from rest_framework import serializers
-from rest_framework.decorators import action
-from rest_framework.response import Response
 from .models import Role, EmployeeProfile, Salary
-from django.db.models.aggregates import Count, Sum
 from django.contrib.auth import get_user_model
 from django.contrib.auth import password_validation
 
@@ -66,9 +62,9 @@ class GetEmployeeProfileSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(source="user.first_name")
     last_name = serializers.CharField(source="user.last_name")
     email = serializers.EmailField(source="user.email")
-    
     role = RoleSerializer(read_only=True)
     salary = SalarySerializer(many=True, read_only=True)
+
 
     def validate_national_id(self, value):
         if len(value) != 10 : 
@@ -100,12 +96,5 @@ class GetEmployeeProfileSerializer(serializers.ModelSerializer):
 
 
 
-
-
-
-class PatchEmployeeProfileSerializer(serializers.ModelSerializer):
-    class Meta : 
-        model = EmployeeProfile
-        fields = ['national_id']
 
 
