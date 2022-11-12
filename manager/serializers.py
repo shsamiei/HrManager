@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Role, EmployeeProfile, Salary
 from django.contrib.auth import get_user_model
 from django.contrib.auth import password_validation
-
+from django.contrib.auth.hashers import make_password
 
 
 
@@ -23,6 +23,7 @@ class SalarySerializer(serializers.ModelSerializer):
 
 
 
+
 class PostEmployeeProfileSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(source="user.first_name")
     last_name = serializers.CharField(source="user.last_name")
@@ -32,7 +33,7 @@ class PostEmployeeProfileSerializer(serializers.ModelSerializer):
     
     def validate_password(self, value):
         password_validation.validate_password(value, self.instance)
-        return value
+        return make_password(value)
 
     def create(self, validated_data):
         user_id = self.context['user_id']

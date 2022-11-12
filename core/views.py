@@ -1,5 +1,6 @@
 from .serializers import UserSerializer
 from rest_framework.viewsets import ModelViewSet
+from manager.permissions import IsHrManager
 from django.contrib.auth import get_user_model
 import string
 import random
@@ -18,7 +19,7 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 
 class UserCreationViewSet(ModelViewSet):
      serializer_class =  UserSerializer
-
+     permission_classes =  [IsHrManager]
 
      @classmethod
      def sendEmail(cls, instance, uuid):
