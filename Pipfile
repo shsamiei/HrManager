@@ -11,6 +11,9 @@ drf-nested-routers = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
 django-redis = "*"
+psycopg2 = "*"
+cffi = "*"
+docker-compose = "*"
 
 [dev-packages]
 

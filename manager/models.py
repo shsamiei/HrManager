@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from .enums import RollChoices
 
 
+
 class Role(models.Model):
     title = models.CharField(max_length=64 ,choices=RollChoices.choices)
     
