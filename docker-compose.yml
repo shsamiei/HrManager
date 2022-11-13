@@ -24,6 +24,8 @@ services:
       - /tmp/app/mysqld:/run/mysqld
     depends_on:
       - postgres
+  redis:
+    image: redis:alpine
 
 
 networks:

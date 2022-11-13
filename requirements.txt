@@ -11,6 +11,8 @@ djangorestframework-simplejwt==4.8.0
 djoser==2.1.0
 drf-nested-routers==0.93.4
 psycopg2-binary
+django-jazzmin==2.6.0
+django-related-admin
 pytz==2022.6
 redis==4.3.4 ; python_version >= '3.6'
 requests==2.28.1 ; python_version >= '3.7' and python_version < '4'
