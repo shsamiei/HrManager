@@ -12,26 +12,26 @@ useful features.
 ### API endpoints :
 
 #### GET
-`All of employees` [http://localhost:8000/manager/Employees/]<br/><br/>
-`Specific employee with id`  [http://localhost:8000/manager/Employees/employee_id]<br/><br/>
-`An employee profile` [http://localhost/manager/profile]<br/><br/>
-`see all the salaries of an employee`[http://localhost/manager/Employees/employee_id/salaries]<br/><br/>
-`see all the users`[http://localhost:8000/user]<br/><br/>
+`All of employees` http://localhost:8000/manager/Employees/ <br/><br/>
+`Specific employee with id`  http://localhost:8000/manager/Employees/employee_id <br/><br/>
+`An employee profile` http://localhost/manager/profile <br/><br/>
+`see all the salaries of an employee`http://localhost/manager/Employees/employee_id/salaries <br/><br/>
+`see all the users` http://localhost:8000/user <br/><br/>
 
 ----
-### AUTHENTICATION
-`get token using user`[http://localhost:8000/auth/jwt/create]
+#### AUTHENTICATION
+`get token using user` http://localhost:8000/auth/jwt/create
 
 ----
 
+#### POST
+`creating user by email` http://localhost:8000/user<br/><br/>
+`creating an employee` http://127.0.0.1:8000/manager/accounts/create/uuid
+> you will get your unique link when HrManager submit your email first 
 
 
 
 
-
-1. for accessing different parts of the project you need to be authenticated , so you can get your access token of already created user 
-    from this endpoint and then use it as a header request  :   access token ===>>> http://localhost:8000/auth/jwt/create
-    
 
 2. through this enpoint (only Hr_manager ) , submit email and automatically an email will be sent to the user,
     the email contain unique link which will be expire in 1 hour and the client could use it for the rest of hiring process.
