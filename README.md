@@ -5,17 +5,9 @@ useful features.
 
 # Installation
 
-To lunch this project, you can use below command to user docker
-> docker-compose up --build 
+use `docker compose build` to get the images ready to create containers.<br>
+then you should use `docker-compose up` to aggregates the output of each container
 
-# Employee Fields : 
-
-* first name 
-* last name
-* birth day
-* national_id
-* username
-* passwords 
 
 # End points :
 
