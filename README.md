@@ -18,7 +18,14 @@ useful features.
 `see all the salaries of an employee`[http://localhost/manager/Employees/employee_id/salaries]<br/><br/>
 `see all the users`[http://localhost:8000/user]<br/><br/>
 
-0) django-admin panel : first, you need to create a super-user through the terminal and then login to Django-admin from this endpoint: 
+----
+### AUTHENTICATION
+`get token using user`[http://localhost:8000/auth/jwt/create]
+
+----
+
+
+
 
 
 
