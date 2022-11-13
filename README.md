@@ -22,7 +22,7 @@ useful features.
 ----
 #### AUTHENTICATION
 `access token using user` http://localhost:8000/auth/jwt/create<br/><br/>
-`refreshing access token `  http:///localhost:8000/auth/jwt/refresh/
+`refreshing access token `  http://localhost:8000/auth/jwt/refresh/
 
 
 ----
