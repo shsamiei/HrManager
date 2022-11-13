@@ -1,15 +1,15 @@
-# HrManager
+## HrManager
 
 HrManager is a  Django application that helps us to manage certain aspects of the HR (human resource) department of a company, it is not so detailed, but still, it does have 
 useful features.
 
-# Installation
+## Installation
 
 use `docker compose build` to get the images ready to create containers.<br>
 then you should use `docker-compose up` to aggregates the output of each container
 
 
-# End points :
+## End points :
 
 0) django-admin panel : first, you need to create a super-user through the terminal and then login to Django-admin from this endpoint: http://localhost:8000/admin
 
