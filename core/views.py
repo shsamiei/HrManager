@@ -21,11 +21,12 @@ class UserCreationViewSet(ModelViewSet):
      serializer_class =  UserSerializer
      permission_classes =  [IsHrManager]
 
+
      @classmethod
      def sendEmail(cls, instance, uuid):
           subject = 'registraion form for hiring'
           message = f'Hello dear {instance.first_name}, thank you for registering in Sotoon,\
-                submit the below link and complete your profile\nyour profile link http://127.0.0.1:8000/manager/accounts/create/{uuid}'
+                submit the form which is provided by the given link and complete your profile :  http://127.0.0.1:8000/manager/accounts/create/{uuid}'
           email_from = settings.EMAIL_HOST_USER
           recipient_list = [instance.email]
           send_mail( subject, message, email_from, recipient_list )

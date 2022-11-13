@@ -7,6 +7,7 @@ from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 User = get_user_model()
 
 class IsHrManager(BasePermission):
+    
     def has_permission(self, request, view):
         employee = EmployeeProfile.objects.get(user_id=request.user.id)
         if employee.role.title == 'hr_manager':
@@ -20,6 +21,7 @@ class IsPayRollManager(BasePermission):
         if employee.role.title == 'payroll_manager':
             return True 
         return False
+        
 
 class IsHrOrPayRollManager(BasePermission):
     def has_permission(self, request, view):

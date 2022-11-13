@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 
 
 
+
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
@@ -25,11 +26,11 @@ class SalarySerializer(serializers.ModelSerializer):
 
 
 class PostEmployeeProfileSerializer(serializers.ModelSerializer):
-    # first_name = serializers.CharField(source="user.first_name")
-    # last_name = serializers.CharField(source="user.last_name")
-    # email = serializers.EmailField(source="user.email")
-    # username = serializers.CharField(source="user.username")
-    # password = serializers.CharField(source="user.password")
+    first_name = serializers.CharField(source="user.first_name")
+    last_name = serializers.CharField(source="user.last_name")
+    email = serializers.EmailField(source="user.email")
+    username = serializers.CharField(source="user.username")
+    password = serializers.CharField(source="user.password")
     
     def validate_password(self, value):
         password_validation.validate_password(value, self.instance)
@@ -50,6 +51,7 @@ class PostEmployeeProfileSerializer(serializers.ModelSerializer):
             user.password = validated_data['user'].pop('password')
             validated_data.pop('user')
             user.save()
+            
             return EmployeeProfile.objects.create(user_id=user_id, **validated_data)
 
 
