@@ -25,11 +25,11 @@ class SalarySerializer(serializers.ModelSerializer):
 
 
 class PostEmployeeProfileSerializer(serializers.ModelSerializer):
-    first_name = serializers.CharField(source="user.first_name")
-    last_name = serializers.CharField(source="user.last_name")
-    email = serializers.EmailField(source="user.email")
-    username = serializers.CharField(source="user.username")
-    password = serializers.CharField(source="user.password")
+    # first_name = serializers.CharField(source="user.first_name")
+    # last_name = serializers.CharField(source="user.last_name")
+    # email = serializers.EmailField(source="user.email")
+    # username = serializers.CharField(source="user.username")
+    # password = serializers.CharField(source="user.password")
     
     def validate_password(self, value):
         password_validation.validate_password(value, self.instance)

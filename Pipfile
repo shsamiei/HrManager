@@ -14,6 +14,7 @@ django-redis = "*"
 psycopg2 = "*"
 cffi = "*"
 docker-compose = "*"
+django-jazzmin = "*"
 
 [dev-packages]
 
