@@ -41,5 +41,5 @@ passwords
 
 6) every type of employee have access to their profile with this endpoint : http://localhost/manager/profile 
 
-watch out : you have to be authenticated by using your own token 
+watch out : you have to be authenticated by your token
 
