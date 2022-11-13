@@ -3,27 +3,29 @@
 HrManager is a  Django application that helps us to manage certain aspects of the HR (human resource) department of a company, it is not so detailed, but still, it does have 
 useful features.
 
-#Installation
+# Installation
 
-To lunch this project, you can use below command to user docker\n
-docker-compose up --build 
+To lunch this project, you can use below command to user docker
+> docker-compose up --build 
 
 # Employee Fields : 
 
-first name, 
-last name, 
-birth day,
-national_id,
-username
-passwords 
+* first name 
+* last name
+* birth day
+* national_id
+* username
+* passwords 
 
 # End points :
 
-0) django-admin panel : first you need create super user through this endpoint ===>>> http://localhost:8000/admin
+0) django-admin panel : first, you need to create a super-user through the terminal and then login to Django-admin from this endpoint: http://localhost:8000/admin
 
 
-1) for accessing different parts of the project you need to be authenticated , so you can get your access token 
+
+1) for accessing different parts of the project you need to be authenticated , so you can get your access token of already created user 
     from this endpoint and then use it as a header request  :   access token ===>>> http://localhost:8000/auth/jwt/create
+    
 
 1) through this enpoint (only Hr_manager ) , submit email and automatically an email will be sent to the user,
     the email contain unique link which will be expire in 1 hour and the client could use it for the rest of hiring process.
