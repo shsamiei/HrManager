@@ -18,38 +18,20 @@ useful features.
 `see all the salaries of an employee`http://localhost/manager/Employees/employee_id/salaries <br/><br/>
 `see all the users` http://localhost:8000/user <br/><br/>
 
->watch out : you have to have appropriate permissions to access data 
+>watch out : you have to have appropriate permissions to access data - first get access token
 ----
 #### AUTHENTICATION
-`get token using user` http://localhost:8000/auth/jwt/create
+`access token using user` http://localhost:8000/auth/jwt/create<br/><br/>
+`refreshing access token `  http:///localhost:8000/auth/jwt/refresh/
+
 
 ----
 
 #### POST
-`creating user by email` http://localhost:8000/user<br/><br/>
-`creating an employee` http://127.0.0.1:8000/manager/accounts/create/uuid
-> you will get your unique link when HrManager submit your email first 
-
-----
-
+>`creating user by email` http://localhost:8000/user<br/><br/>
+>`creating an employee` http://127.0.0.1:8000/manager/accounts/create/uuid<br/>
+ you will get your unique link when HrManager submit your email first <br/><br/>
+`create new salary (assign to an employee)` http://localhost/manager/Employees/employee_id/salaries <br/>
 
 
-
-2. through this enpoint (only Hr_manager ) , submit email and automatically an email will be sent to the user,
-    the email contain unique link which will be expire in 1 hour and the client could use it for the rest of hiring process.
-    endpoint ===>>> http://localhost:8000/user 
-
-3. Hr_Manager and PayRoll_Manager both have permissions to see the list of employees and their salaries 
-  through this endpoint ===>>> http://localhost:8000/manager/Employees/
-  
-4. just by adding an id at the end of previous endpoint you will get access(if you are authenticated as hr_manager or payroll_manager) to an specific employee profile 
-  endpoint : http://localhost:8000/manager/Employees/employee_id 
-  
-5. a PayRoll_Manager has permission to change the salaries too, endpoint : http://localhost/manager/Employees/employee_id/salaries
-
-6. a Hr_Manager has permission to edit profiles of add employees , endpoint http://localhost/manager/Employees/employee_id 
-
-7. every type of employee have access to their profile with this endpoint : http://localhost/manager/profile 
-
->watch out : you have to be authenticated by your token
 
