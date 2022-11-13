@@ -18,6 +18,7 @@ useful features.
 `see all the salaries of an employee`http://localhost/manager/Employees/employee_id/salaries <br/><br/>
 `see all the users` http://localhost:8000/user <br/><br/>
 
+>watch out : you have to have appropriate permissions to access data 
 ----
 #### AUTHENTICATION
 `get token using user` http://localhost:8000/auth/jwt/create
@@ -29,6 +30,7 @@ useful features.
 `creating an employee` http://127.0.0.1:8000/manager/accounts/create/uuid
 > you will get your unique link when HrManager submit your email first 
 
+----
 
 
 
